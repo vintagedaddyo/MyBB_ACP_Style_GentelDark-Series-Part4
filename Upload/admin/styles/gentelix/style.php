@@ -12,7 +12,7 @@
  *
  * MyBB Version: 1.8.x
  *
- * Style Version: 1.0
+ * Style Version: 1.1
  * 
  */
 
@@ -70,7 +70,7 @@ class Page extends DefaultPage
         echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/bootstrap.min.css?ver=1804\" type=\"text/css\">\n";
         echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/font-awesome/css/font-awesome.min.css?ver=1804\" type=\"text/css\">\n";
         echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/iCheck/skins/flat/blue.css?ver=1804\" type=\"text/css\">\n";
-		echo "	<link rel=\"stylesheet\" href=\"styles/".$this->style."/main.css?ver=1804\" type=\"text/css\">\n";
+		echo "	<link rel=\"stylesheet\" href=\"styles/".$this->style."/main.css?ver=1813\" type=\"text/css\">\n";
         
         // Add CP Style Specific Favicon
 		echo " <link rel=\"Shortcut icon\" href=\"styles/".$this->style."/favicon.ico\">\n";
@@ -81,16 +81,16 @@ class Page extends DefaultPage
 			echo "	<link rel=\"stylesheet\" href=\"styles/{$this->style}/{$this->active_module}.css\" type=\"text/css\" />\n";
 		}
 
-		echo "	<script type=\"text/javascript\" src=\"../jscripts/jquery.js\"></script>\n";
-		echo "	<script type=\"text/javascript\" src=\"../jscripts/jquery.plugins.min.js\"></script>\n";
-		echo "	<script type=\"text/javascript\" src=\"../jscripts/general.js?ver=1807\"></script>\n";
-		echo "	<script type=\"text/javascript\" src=\"./jscripts/admincp.js\"></script>\n";
+		echo "	<script type=\"text/javascript\" src=\"../jscripts/jquery.js?ver=1823\"></script>\n";
+		echo "	<script type=\"text/javascript\" src=\"../jscripts/jquery.plugins.min.js?ver=1821\"></script>\n";
+		echo "	<script type=\"text/javascript\" src=\"../jscripts/general.js?ver=1821\"></script>\n";
+		echo "	<script type=\"text/javascript\" src=\"./jscripts/admincp.js?ver=1821\"></script>\n";
 		echo "	<script type=\"text/javascript\" src=\"./jscripts/tabs.js\"></script>\n";
 
 		echo "	<link rel=\"stylesheet\" href=\"jscripts/jqueryui/css/redmond/jquery-ui.min.css\" />\n";
 		echo "	<link rel=\"stylesheet\" href=\"jscripts/jqueryui/css/redmond/jquery-ui.structure.min.css\" />\n";
 		echo "	<link rel=\"stylesheet\" href=\"jscripts/jqueryui/css/redmond/jquery-ui.theme.min.css\" />\n";
-		echo "	<script src=\"jscripts/jqueryui/js/jquery-ui.min.js?ver=1804\"></script>\n";
+		echo "	<script src=\"jscripts/jqueryui/js/jquery-ui.min.js?ver=1813\"></script>\n";
 
 		// Stop JS elements showing while page is loading (JS supported browsers only)
 		echo "  <style type=\"text/css\">.popup_button { display: none; } </style>\n";
@@ -106,8 +106,9 @@ class Page extends DefaultPage
 
        echo "<script>
             //<![CDATA[
+	        var nprog = $.noConflict();
 	        NProgress.configure({ showSpinner: false });
-		    $(document).ready(function() {
+		    nprog(document).ready(function() {
 			NProgress.start();
 			NProgress.done();
 		    }); 
@@ -262,7 +263,7 @@ lang.saved = \"{$lang->saved}\";
         echo "            <br>";
         echo "            Powered By: <a href=\"http://www.mybb.com/\" target=\"_blank\">MyBB</a>, &copy; 2002-".COPY_YEAR." <a href=\"http://www.mybb.com/\" target=\"_blank\">MyBB Group</a>.";
         echo "            <br>";
-        echo "            Gentelella Style By: <a href=\"http://www.chack1172.altervista.org\">Chack1172</a>. <br /> Gentelix Style By: <a href=\"http://www.chack1172.altervista.org\">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href=\"https://colorlib.com\">Colorlib</a>";
+        echo "            Gentelella Style By: <a href=\"http://www.chack1172.altervista.org\">Chack1172</a>. <br /> Gentelix Style By: <a href=\"http://community.mybb.com/user-6029.html\">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href=\"https://colorlib.com\">Colorlib</a>";
         echo "          </div>\n";
         echo "          <div class=\"clearfix\"></div>\n";
         echo "        </footer>\n";
@@ -271,6 +272,10 @@ lang.saved = \"{$lang->saved}\";
         echo "      </div>\n";
 		echo "    </div>\n";
 		echo "  </div>\n";
+
+        echo "	<script type=\"text/javascript\" src=\"styles/".$this->style."/jquery.js\"></script>\n";
+        echo "  <script>var $ = jQuery.noConflict;</script>\n";
+
 		echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/bootstrap.min.js\"></script>\n";
         echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/iCheck/icheck.min.js\"></script>";
 		echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/general.js\"></script>\n";
@@ -575,10 +580,10 @@ EOF;
                 <div class="separator">
                     <br>
                     <h1>
-                        <i class="fa fa-paw"></i>
-                        Gentelella Alela!
+                        <i class="fa fa-comments"></i>
+                        Gentelix!
                     </h1>
-                    <p>Gentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Gentelix Style By: <a href="http://www.chack1172.altervista.org">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
+                    <p>Gentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Gentelix Style By: <a href="http://community.mybb.com/user-6029.html">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
                 </div>
             </form>
         </section>
@@ -640,10 +645,10 @@ EOF;
                 <div class="separator">
                     <br>
                     <h1>
-                        <i class="fa fa-paw"></i>
-                        Gentelella Alela!
+                        <i class="fa fa-comments"></i>
+                        Gentelix!
                     </h1>
-                    <p>Theme Powered By <a href="http://www.chack1172.altervista.org/?language=english">chack1172</a>. Based On Gentelella - Bootstrap Admin Template.</p>
+                    <p>Gentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Gentelix Style By: <a href="http://community.mybb.com/user-6029.html">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
                 </div>
             </form>
         </section>
