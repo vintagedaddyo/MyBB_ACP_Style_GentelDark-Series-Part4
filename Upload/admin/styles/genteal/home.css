@@ -11,10 +11,20 @@
  *
  * MyBB Version: 1.8.x
  *
- * Style Version: 1.0
+ * Style Version: 1.2
  * 
  */
 
+#page_home_dashboard .menu.online_admins {
+    list-style: none;
+    padding: 0;
+}
+#page_home_dashboard .menu.online_admins a {
+    color: #fff;
+    position: relative;
+    display: block;
+    padding: 13px 15px 12px;
+}
 
 #page_home_dashboard .table_1 th {
 	display: none

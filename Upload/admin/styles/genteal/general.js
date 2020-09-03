@@ -1,20 +1,3 @@
-/*!
- *
- * MyBB: Default - Admin CP
- *
- * Filename: general.js
- *
- * Style Author: Chack1172 & Vintagedaddyo
- *
- * C Site: http://www.chack1172.altervista.org/
- * V Site: http://community.mybb.com/user-6029.html
- *
- * MyBB Version: 1.8.x
- *
- * Style Version: 1.1
- * 
- */
-
 (function ($, window) {
     var URL = window.location,
         $BODY = $('body'),

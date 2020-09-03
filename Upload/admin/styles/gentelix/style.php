@@ -12,10 +12,11 @@
  *
  * MyBB Version: 1.8.x
  *
- * Style Version: 1.1
+ * Style Version: 1.2
  * 
  */
-
+ 
+ 
 // Disallow direct access to this file for security reasons
 if(!defined("IN_MYBB"))
 {
@@ -25,6 +26,7 @@ if(!defined("IN_MYBB"))
 class Page extends DefaultPage
 {
     static $tid = 1;
+    
     function output_header($title="")
 	{
 		global $mybb, $admin_session, $lang, $plugins, $run_module;
@@ -67,18 +69,18 @@ class Page extends DefaultPage
         echo "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
 		echo "	<meta name=\"author\" content=\"MyBB Group\">\n";
 		echo "	<meta name=\"copyright\" content=\"Copyright ".COPY_YEAR." MyBB Group.\">\n";
-        echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/bootstrap.min.css?ver=1804\" type=\"text/css\">\n";
-        echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/font-awesome/css/font-awesome.min.css?ver=1804\" type=\"text/css\">\n";
-        echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/iCheck/skins/flat/blue.css?ver=1804\" type=\"text/css\">\n";
-		echo "	<link rel=\"stylesheet\" href=\"styles/".$this->style."/main.css?ver=1813\" type=\"text/css\">\n";
-        
+        echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/bootstrap.min.css?ver=3.3.7\" type=\"text/css\">\n";
+        echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/font-awesome/css/all.min.css?ver=5.6.0\" type=\"text/css\">\n";
+        echo "  <link rel=\"stylesheet\" href=\"styles/".$this->style."/iCheck/skins/flat/blue.css?ver=1.2\" type=\"text/css\">\n";
+		echo "	<link rel=\"stylesheet\" href=\"styles/".$this->style."/main.css?ver=1.2\" type=\"text/css\">\n";
+		
         // Add CP Style Specific Favicon
 		echo " <link rel=\"Shortcut icon\" href=\"styles/".$this->style."/favicon.ico\">\n";
-
+		
 		// Load stylesheet for this module if it has one
 		if(file_exists(MYBB_ADMIN_DIR."styles/{$this->style}/{$this->active_module}.css"))
 		{
-			echo "	<link rel=\"stylesheet\" href=\"styles/{$this->style}/{$this->active_module}.css\" type=\"text/css\" />\n";
+			echo "	<link rel=\"stylesheet\" href=\"styles/{$this->style}/{$this->active_module}.css?ver=1.2\" type=\"text/css\" />\n";
 		}
 
 		echo "	<script type=\"text/javascript\" src=\"../jscripts/jquery.js?ver=1823\"></script>\n";
@@ -106,7 +108,7 @@ class Page extends DefaultPage
 
        echo "<script>
             //<![CDATA[
-	        var nprog = $.noConflict();
+	        var nprog = $;
 	        NProgress.configure({ showSpinner: false });
 		    nprog(document).ready(function() {
 			NProgress.start();
@@ -116,14 +118,14 @@ class Page extends DefaultPage
             </script>\n";
 
 
-
-
+            
 		echo "	<script type=\"text/javascript\">
 //<![CDATA[
 var loading_text = '{$lang->loading_text}';
 var cookieDomain = '{$mybb->settings['cookiedomain']}';
 var cookiePath = '{$mybb->settings['cookiepath']}';
 var cookiePrefix = '{$mybb->settings['cookieprefix']}';
+var cookieSecureFlag = '{$mybb->settings['cookiesecureflag']}';
 var imagepath = '../images';
 
 lang.unknown_error = \"{$lang->unknown_error}\";
@@ -138,7 +140,7 @@ lang.saved = \"{$lang->saved}\";
         echo "      <div class=\"col-md-3 left_col\">\n";
         echo "        <div class=\"left_col scroll-view\">\n";
         echo "          <div class=\"navbar nav_title\">\n";
-        echo "            <a href=\"index.php\" class=\"site_title\"><i class=\"fa fa-comments-o\"></i> <span>MyBB Admin CP</span></a>\n";
+        echo "            <a href=\"index.php\" class=\"site_title\"><i class=\"fas fa-comments\"></i> <span>MyBB Admin CP</span></a>\n";
         echo "          </div>\n";
         echo "          <div class=\"clearfix\"></div>\n";
         echo "          <div class=\"profile\">\n";
@@ -159,18 +161,18 @@ lang.saved = \"{$lang->saved}\";
 		echo "        <div class=\"nav_menu\">\n";
 		echo "          <nav role=\"navigation\">\n";
         echo "            <div class=\"nav toggle\">\n";
-        echo "              <a id=\"menu_toggle\"><i class=\"fa fa-bars\"></i></a>\n";
+        echo "              <a id=\"menu_toggle\"><i class=\"fas fa-bars\"></i></a>\n";
         echo "            </div>\n";
 		echo "            <ul class=\"nav navbar-nav navbar-right\">\n";
 		echo "              <li>\n";
 		echo "                <a href=\"#\" class=\"user-profile dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">\n";
 		echo "                  <img src=\"{$avatar}\" alt=\"\">\n";
         echo "                  {$mybb->user['username']}\n";
-        echo "                  <span class=\" fa fa-angle-down\"></span>\n";
+        echo "                  <span class=\" fas fa-angle-down\"></span>\n";
         echo "                </a>\n";
         echo "                <ul class=\"dropdown-menu dropdown-usermenu pull-right\">\n";
         echo "                  <li><a href=\"{$mybb->settings['bburl']}\">{$lang->view_board}</a></li>\n";
-        echo "                  <li><a href=\"index.php?action=logout&amp;my_post_key={$mybb->post_code}\" class=\"logout\"><i class=\"fa fa-sign-out pull-right\"></i> {$lang->logout}</a></li>\n";
+        echo "                  <li><a href=\"index.php?action=logout&amp;my_post_key={$mybb->post_code}\" class=\"logout\"><i class=\"fas fa-sign-out-alt pull-right\"></i> {$lang->logout}</a></li>\n";
         echo "                </ul>\n";
 		echo "              </li>\n";
 		echo "            </ul>\n";
@@ -263,7 +265,8 @@ lang.saved = \"{$lang->saved}\";
         echo "            <br>";
         echo "            Powered By: <a href=\"http://www.mybb.com/\" target=\"_blank\">MyBB</a>, &copy; 2002-".COPY_YEAR." <a href=\"http://www.mybb.com/\" target=\"_blank\">MyBB Group</a>.";
         echo "            <br>";
-        echo "            Gentelella Style By: <a href=\"http://www.chack1172.altervista.org\">Chack1172</a>. <br /> Gentelix Style By: <a href=\"http://community.mybb.com/user-6029.html\">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href=\"https://colorlib.com\">Colorlib</a>";
+        echo "            Gentelix Style By: <a href=\"http://community.mybb.com/user-6029.html\">Vintagedaddyo</a>.    <br />Based On MyGentelella Style By: <a href=\"http://www.chack1172.altervista.org\">Chack1172</a>.
+         <br /> Based On Gentelella - Bootstrap Admin Template by <a href=\"https://colorlib.com\">Colorlib</a>";        
         echo "          </div>\n";
         echo "          <div class=\"clearfix\"></div>\n";
         echo "        </footer>\n";
@@ -272,13 +275,9 @@ lang.saved = \"{$lang->saved}\";
         echo "      </div>\n";
 		echo "    </div>\n";
 		echo "  </div>\n";
-
-        echo "	<script type=\"text/javascript\" src=\"styles/".$this->style."/jquery.js\"></script>\n";
-        echo "  <script>var $ = jQuery.noConflict;</script>\n";
-
-		echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/bootstrap.min.js\"></script>\n";
-        echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/iCheck/icheck.min.js\"></script>";
-		echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/general.js\"></script>\n";
+		echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/bootstrap.min.js?ver=3.3.7\"></script>\n";
+        echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/iCheck/icheck.min.js?ver=1.2\"></script>";
+		echo "  <script type=\"text/javascript\" src=\"styles/".$this->style."/general.js?ver=1.2\"></script>\n";
 		echo "</body>\n";
 		echo "</html>\n";
 
@@ -365,8 +364,8 @@ lang.saved = \"{$lang->saved}\";
 		if(!is_array($this->_menu))
 			return false;
         
-		$build_menu = "            <div id=\"menu\" class=\"menu_section\">\n";
-        $build_menu .= "              <ul class=\"nav side-menu\">\n";
+		$build_menu = '<div id="menu" class="menu_section">';
+        $build_menu .= '    <ul class="nav side-menu">';
 		ksort($this->_menu);
 		foreach($this->_menu as $items)
 		{
@@ -374,35 +373,32 @@ lang.saved = \"{$lang->saved}\";
 			{
 				$menu_item['link'] = htmlspecialchars_uni($menu_item['link']);
                 
-                $class = "";
-				if($menu_item['id'] == $this->active_module)
-                    $class = "active";
                 $sub_menu = $menu_item['submenu'];
                 $sub_menu_title = $menu_item['title'];
-                $build_menu .= "                <li class=\"{$class}\">\n";
-				$build_menu .= "                  <a>{$menu_item['title']} <span class=\"fa fa-chevron-down\"></span></a>\n";
-                if($sub_menu)
+                
+                if ($sub_menu) {
                     $build_menu .= $this->_build_submenu($sub_menu_title, $sub_menu, $menu_item['id'], $this->active_module);
+                }
+                
                 $build_menu .= $sidebar;
-                $build_menu .= "                </li>\n";
 			}
 		}
+        $build_menu .= '        '.$this->sidebar;
         
-        $build_menu .= "              </ul>\n";
-		$build_menu .= "            </div>\n";
+        $build_menu .= '    </ul>';
+		$build_menu .= '</div>';
 
 		return $build_menu;
 	}
     
-    function _build_submenu($title, $items, $item="", $mod="")
-	{
-		if(is_array($items))
-		{
+    function _build_submenu($title, $items=[], $item="", $mod="")
+    {
+		if (is_array($items)) {
 			$sidebar = new sideBarItem($title);
-			$sidebar->add_menu_items($items, $this->active_action);
-			$this->submenu = $sidebar->get_markup($item, $mod);
-            return $this->submenu;
+			$sidebar->add_menu_items($items, $this->active_action, $item);
+			return $sidebar->get_markup($item, $mod);
         }
+        return '';
 	}
     
     function _generate_breadcrumb()
@@ -529,9 +525,21 @@ lang.saved = \"{$lang->saved}\";
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="MyBB Group" />
 <meta name="copyright" content="Copyright {$copy_year} MyBB Group.">
-<link rel="stylesheet" href="./styles/{$cp_style}/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="./styles/{$cp_style}/bootstrap.min.css?ver=3.3.7" type="text/css">
 <link rel="stylesheet" href="./styles/{$cp_style}/login.css" type="text/css">
-<link rel="stylesheet" href="./styles/{$cp_style}/font-awesome/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="./styles/{$cp_style}/font-awesome/css/all.min.css?ver=5.6.0" type="text/css">
+<!-- Add Favicon -->
+<link rel="Shortcut icon" href="./styles/{$cp_style}/favicon.ico" />
+<!-- Progress Bar -->
+<script type="text/javascript" src="../jscripts/jquery.js?ver=1823"></script>
+<link type="text/css" rel="stylesheet" href="./styles/{$cp_style}/progbar/nprogress.css">
+<script type="text/javascript" src="./styles/{$cp_style}/progbar/nprogress.js"></script>
+<script>	NProgress.configure({ showSpinner: true });
+		$(document).ready(function() {
+			NProgress.start();
+			NProgress.done();
+		});
+</script>
 </head>
 <body class="login">
 <div class="login_wrapper">
@@ -539,7 +547,7 @@ lang.saved = \"{$lang->saved}\";
         <section class="login_content">
             <form method="post" action="{$_SERVER['PHP_SELF']}{$query_string}">
                 <input type="hidden" name="do" value="login">
-                <h1>AdminCP Login</h2>
+                <a href="../index.php"><h1><i class="fas fa-cog"></i> Admin CP</h1></a>
 EOF;
 		if($message)
 			$login_page .= "<p id=\"message\" class=\"{$class}\"><span class=\"text\">{$message}</span></p>";
@@ -574,16 +582,13 @@ EOF;
                 {$secret_pin}
                 <div>
                     <input type="submit" class="btn btn-default" value="{$lang->login}" />
-                    <a href="../member.php?action=lostpw" class="reset_pass">{$lang->lost_password}</a>
+                    <a href="../member.php?action=lostpw" class="reset_pass"><i class="far fa-lightbulb lightbulb"></i> {$lang->lost_password}</a>
                 </div>
                 <div class="clearfix"></div>
                 <div class="separator">
                     <br>
-                    <h1>
-                        <i class="fa fa-comments"></i>
-                        Gentelix!
-                    </h1>
-                    <p>Gentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Gentelix Style By: <a href="http://community.mybb.com/user-6029.html">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
+                    <a href="../index.php"><h1><i class="fas fa-comments"></i> Gentelix!</h1></a>
+                    <p>Powered By: <a href="https://www.mybb.com/" target="_blank">MyBB</a>, &copy; 2002-{$copy_year} <a href="https://www.mybb.com/" target="_blank">MyBB Group</a>.<br /> Gentelix Style By: <a href="http://community.mybb.com/user-6029.html">Vintagedaddyo</a>. <br />Based On MyGentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
                 </div>
             </form>
         </section>
@@ -627,9 +632,21 @@ EOF;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="MyBB Group" />
 <meta name="copyright" content="Copyright {$copy_year} MyBB Group." />
-<link rel="stylesheet" href="./styles/{$cp_style}/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="./styles/{$cp_style}/bootstrap.min.css?ver=3.3.7" type="text/css">
 <link rel="stylesheet" href="./styles/{$cp_style}/login.css" type="text/css">
-<link rel="stylesheet" href="./styles/{$cp_style}/font-awesome/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="./styles/{$cp_style}/font-awesome/css/all.min.css?ver=5.6.0" type="text/css">
+<!-- Add Favicon -->
+<link rel="Shortcut icon" href="./styles/{$cp_style}/favicon.ico" />
+<!-- Progress Bar -->
+<script type="text/javascript" src="../jscripts/jquery.js?ver=1823"></script>
+<link type="text/css" rel="stylesheet" href="./styles/{$cp_style}/progbar/nprogress.css">
+<script type="text/javascript" src="./styles/{$cp_style}/progbar/nprogress.js"></script>
+<script>	NProgress.configure({ showSpinner: true });
+		$(document).ready(function() {
+			NProgress.start();
+			NProgress.done();
+		});
+</script>
 </head>
 <body class="login">
 <div class="login_wrapper">
@@ -637,18 +654,15 @@ EOF;
         <section class="login_content">
             <form method="post" action="index.php{$query_string}">
                 <input type="hidden" name="do" value="do_2fa" />
-                <h1>Admin CP 2FA</h2>
-                <p>{$lang->my2fa_code}</p>
+                <a href="../index.php"><h1><i class="fas fa-cog"></i> Admin CP 2FA</h1></a>
+                               <p>{$lang->my2fa_code}</p>
                 <div><input type="text" name="code" id="code" class="form-control initial_focus"></div>
                 <div><input type="submit" class="btn btn-default" value="{$lang->login}"></div>
                 <div class="clearfix"></div>
                 <div class="separator">
                     <br>
-                    <h1>
-                        <i class="fa fa-comments"></i>
-                        Gentelix!
-                    </h1>
-                    <p>Gentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Gentelix Style By: <a href="http://community.mybb.com/user-6029.html">Vintagedaddyo</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
+                    <a href="../index.php"><h1><i class="fas fa-comments"></i> Gentelix!</h1></a>
+                    <p>Powered By: <a href="https://www.mybb.com/" target="_blank">MyBB</a>, &copy; 2002-{$copy_year} <a href="https://www.mybb.com/" target="_blank">MyBB Group</a>.<br /> Gentelix Style By: <a href="http://community.mybb.com/user-6029.html">Vintagedaddyo</a>. <br />Based On MyGentelella Style By: <a href="http://www.chack1172.altervista.org/?language=english">Chack1172</a>. <br /> Based On Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a></p>
                 </div>
             </form>
         </section>
@@ -664,8 +678,8 @@ EOF;
 
 class SidebarItem extends DefaultSidebarItem
 {
-    private $_title;
-	private $_contents;
+    private $_title = '';
+	private $_contents = '';
     
     function __construct($title="")
 	{
@@ -677,34 +691,45 @@ class SidebarItem extends DefaultSidebarItem
 		$this->_contents = $html;
 	}
     
-    function add_menu_items($items, $active)
+    function add_menu_items($items, $active, $module='')
 	{
-		global $run_module;
+		$this->_contents = '';
+		foreach ($items as $item) {
+			if($module != '' && !check_admin_permissions(array('module' => $module, 'action' => $item['id']), false))
+				continue;
 
-		$this->_contents = "";
-		foreach($items as $item)
-		{
-			/*if(!check_admin_permissions(array("module" => $run_module, "action" => $item['id']), false))
-				continue;*/
-
-			$class = "";
-			if($item['id'] == $active)
-				$class = "current-page";
+			$class = '';
+			if ($item['id'] == $active) {
+				$class = ' class="current-page"';
+            }
             
 			$item['link'] = htmlspecialchars_uni($item['link']);
-			$this->_contents .= "                  <li class=\"{$class}\"><a href=\"{$item['link']}\">{$item['title']}</a></li>\n";
+			$this->_contents .= "        <li{$class}><a href=\"{$item['link']}\">{$item['title']}</a></li>\n";
 		}
 	}
     
-	function get_markup($active="", $mod="")
+	function get_markup($active='active', $mod='mod')
 	{
-        if($active != $mod)
-            $style = "display: none";
-		$markup = "                  <ul class=\"nav child_menu\" style=\"{$style}\">\n";
-		if($this->_contents)
-			$markup .= $this->_contents;
-		$markup .= "                  </ul>\n";
-		return $markup;
+        $style = $class = '';
+        if ($active != $mod) {
+            $style = ' style="display: none"';
+        } else {
+            $class = ' class="active"';
+        }
+        
+        $markup = <<<EOT
+<li{$class}>
+    <a>
+        {$this->_title}
+        <span class="fas fa-chevron-down"></span>
+    </a>
+    <ul class="nav child_menu"{$style}>
+        {$this->_contents}
+    </ul>
+</li>
+EOT;
+        
+        return $markup;
 	}
 }
 
@@ -721,6 +746,11 @@ class Table extends DefaultTable
     function construct_cell($data, $extra=array())
 	{
 		$this->_cells[] = array("data" => $data, "extra" => $extra);
+	}
+    
+	function num_rows()
+	{
+		return count($this->_rows);
 	}
     
     function construct_header($data, $extra=array())
@@ -943,7 +973,7 @@ class Form extends DefaultForm
         $input .= " class=\"btn btn-primary {$class}\"";
 		if(isset($options['style']))
 			$input .= " style=\"".$options['style']."\"";
-        $input .= "><i class=\"fa fa-upload\"></i></label>\n";
+        $input .= "><i class=\"fas fa-upload\"></i></label>\n";
 		return $input;
 
 	}
@@ -1067,7 +1097,7 @@ class Form extends DefaultForm
 		foreach($option_list as $value => $option)
 		{
 			$select_add = '';
-			if(!empty($selected) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
+			if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
 			{
 				$select_add = " selected=\"selected\"";
 			}
@@ -1214,7 +1244,6 @@ class Form extends DefaultForm
 
 		return $select;
 	}
-    
     
     function generate_submit_button($value, $options=array())
 	{

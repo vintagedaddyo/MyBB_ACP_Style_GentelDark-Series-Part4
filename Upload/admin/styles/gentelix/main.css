@@ -11,7 +11,7 @@
  *
  * MyBB Version: 1.8.x
  *
- * Style Version: 1.0
+ * Style Version: 1.2
  * 
  */
 
@@ -601,8 +601,8 @@ label {
 
 .btn-default.active, .btn-default.active:hover, .btn-default.active:focus {
 	color: #252525;
-	background-color: #266F3E;
-	border-color: #266F3E;
+	background-color: #266F3E !important;
+	border-color: #266F3E !important;
 }
 
 .select2-container {
@@ -698,3 +698,33 @@ footer {
 }
 
 /* END: Custom Scrollbar */
+
+.nav-tabs {
+  border-bottom: 1px solid #2D2D2D; /*#ddd;*/
+}
+
+.nav-tabs>li>a:hover {
+	border-color: #2D2D2D;
+}
+.nav-tabs>li.active>a:hover {
+	color: #555;
+	cursor: default;
+	background-color: #252525;
+	border: 1px solid #2D2D2D;
+	border-bottom-color: transparent; 
+}
+.nav-tabs>li.active>a:focus {
+	color: #555;
+	cursor: default;
+	background-color: #202020;
+	border: 1px solid #2D2D2D;
+	border-bottom-color: transparent;
+}
+
+.nav-tabs>li.active>a {
+	color: #555;
+	cursor: default;
+	background-color: #2D2D2D;
+	border: 1px solid #2D2D2D;
+	border-bottom-color: transparent;
+}

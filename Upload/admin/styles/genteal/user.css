@@ -11,12 +11,13 @@
  *
  * MyBB Version: 1.8.x
  *
- * Style Version: 1.0
+ * Style Version: 1.2
  * 
  */
 
 #page_user_users .table-responsive {
-	overflow: initial
+/*	overflow: initial*/
+    overflow-y: auto;
 }
 #search_form {
 	padding-top: 15px

@@ -11,13 +11,13 @@
  *
  * MyBB Version: 1.8.x
  *
- * Style Version: 1.0
+ * Style Version: 1.2
  * 
  */
 
 a {
 	color: #266F3E;
-	text-decoration: none
+	text-decoration: none;
 }
 
 a:hover, a:focus {
