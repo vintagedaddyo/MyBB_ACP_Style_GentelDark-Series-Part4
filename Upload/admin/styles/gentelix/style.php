@@ -1161,11 +1161,7 @@ class Form extends DefaultForm
 				$fselectcache[$forum['pid']][$forum['disporder']][$forum['fid']] = $forum;
 		}
 		// @ 1164
-		if(empty($options['main_option']))
-        {
-            $options['main_option'] = null;
-        }
-		if($options['main_option'] && $is_first)
+		if(isset($options['main_option']) && $is_first)
 		{
 			$select_add = '';
 			if($selected == -1)
