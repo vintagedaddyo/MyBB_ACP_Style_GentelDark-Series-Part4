@@ -1124,8 +1124,8 @@ class Form extends DefaultForm
 		{
             $select_add = '';
             // @ 1126            
-            $selected = $select_add;
-			if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
+			//if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
+			if((!is_array($selected) || !empty($selected)) && ((is_array($selected) && in_array((string)$value, $selected)) || (!is_array($selected) && (string)$value === (string)$selected)))			
 			{
 				$select_add = " selected=\"selected\"";
 			}
