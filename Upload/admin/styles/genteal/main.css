@@ -570,6 +570,8 @@ footer {
 	background: #181818;
 	border-radius: 0;
 	border-color: #2D2D2D;
+    padding: unset !important;
+    width: 98% !important;	
 }
 
 .form-control:focus {
