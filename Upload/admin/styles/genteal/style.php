@@ -842,10 +842,10 @@ class Table extends DefaultTable
 			{
 				$table .= "              <th";
 		        // @ 845 & 847
-		        if(empty($data['extra']['class']))
-                {
-                    $data['extra']['class'] = null;
-                }				
+				if(!isset($data['extra']['class']))
+				{
+					$data['extra']['class'] = '';
+				}				
 				if($key == 0)
 					$data['extra']['class'] .= " first";
 				elseif(!isset($this->_headers[$key+1]))
@@ -1000,13 +1000,10 @@ class Form extends DefaultForm
 		if(!empty($name))
 			$textarea .= " name=\"{$name}\"";
 		// @ 1003
-		if(empty($class))
-        {
-            $class = null;
-        }		
-		if(isset($options['class']))
-			$class = $options['class'];
-        $textarea .= " class=\"form-control {$class}\"";
+        if(isset($options['class']))
+        {		
+			$textarea .= " class=\"form-control {$options['class']}\"";
+		}	
 		if(isset($options['id']))
 			$textarea .= " id=\"{$options['id']}\"";
         else {
@@ -1104,13 +1101,10 @@ class Form extends DefaultForm
 				$options['size'] = count($option_list);
 		}
 		// @ 1107
-		if(empty($class))
-        {
-            $class = null;
-        }		
 		if(isset($options['class']))
-			$class = $options['class'];
-        $select .= " class=\"form-control {$class}\"";
+		{
+			$select .= " class=\"form-control {$options['class']}\"";
+		}     
 		if(isset($options['id']))
 			$select .= " id=\"{$options['id']}\"";
         else {
@@ -1124,7 +1118,6 @@ class Form extends DefaultForm
 		{
             $select_add = '';
             // @ 1126            
-			//if((!is_array($selected) || !empty($selected)) && ((string)$value == (string)$selected || (is_array($selected) && in_array((string)$value, $selected))))
 			if((!is_array($selected) || !empty($selected)) && ((is_array($selected) && in_array((string)$value, $selected)) || (!is_array($selected) && (string)$value === (string)$selected)))			
 			{
 				$select_add = " selected=\"selected\"";
@@ -1160,6 +1153,7 @@ class Form extends DefaultForm
 			foreach($forum_cache as $fid => $forum)
 				$fselectcache[$forum['pid']][$forum['disporder']][$forum['fid']] = $forum;
 		}
+		
 		// @ 1164
 		if(isset($options['main_option']) && $is_first)
 		{
@@ -1211,13 +1205,10 @@ class Form extends DefaultForm
 			else
 				$select = "<select name=\"{$name}\" multiple=\"multiple\"";
 		    // @ 1218
-		    if(empty($class))
-            {
-                $class = null;
-            }			
 			if(isset($options['class']))
-				$select = $options['class'];
-            $select .= " class=\"form-control {$class}\"";
+			{
+				$select .= " class=\"form-control {$options['class']}\"";
+			} 
 			if(isset($options['id']))
 				$select .= " id=\"{$options['id']}\"";
             else {
@@ -1242,14 +1233,11 @@ class Form extends DefaultForm
 			$select .= " multiple=\"multiple\"";
 		
 		// @ 1248
-		if(empty($class))
-        {
-            $class = null;
-        }
-
 		if(isset($options['class']))
-			$class = $options['class'];
-        $select .= " class=\"form-control {$class}\"";
+		{
+			$select .= " class=\"form-control {$options['class']}\"";
+		}
+
 
 		if(isset($options['id']))
 			$select .= " id=\"{$options['id']}\"";
@@ -1511,9 +1499,12 @@ class Form extends DefaultForm
     function output_submit_wrapper($buttons)
 	{
 		global $plugins;
+		
 		$return = "<div class=\"x_panel form_button_wrapper\">\n";
 		foreach($buttons as $button)
+		{
 			$return .= "  " . $button." \n";
+		}
         $return .= "</div>";
 		// @ 1523
 		if(empty($this->_return))
@@ -1521,9 +1512,13 @@ class Form extends DefaultForm
             $this->_return = null;
         }	        
 		if($this->_return == false)
+		{
 			echo $return;
+		}
 		else
+		{
 			return $return;
+		}
     }
 }
 
